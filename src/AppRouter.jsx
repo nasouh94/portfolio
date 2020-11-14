@@ -1,19 +1,25 @@
 import React, { useEffect, useRef } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Route } from "react-router-dom";
+import {
+  CSSTransition
+} from "react-transition-group";
 import styled from "@emotion/styled";
 
-import Button from "./components/Button.jsx";
 import SideNav from "./components/SideNav.jsx";
 import About from "./components/About.jsx";
 
-import { Colors } from "./rules/index";
+import { Colors, Animation } from "./rules/index";
 
 const AppRouter = () => {
   const cursor = useRef();
 
-  console.log(cursor, "cursor");
+  const routes = [
+    { path: "/", name: "Home", Component: Home },
+    { path: "/about", name: "About", Component: About },
+    { path: "/work", name: "work", Component: Work }
+  ];
 
-  console.log(cursor.current, "curcursor.current.setAttributesor");
+  console.log(Animation, "sada");
   useEffect(() => {
     if (cursor.current) {
       document.addEventListener("mousemove", (e) => {
@@ -23,32 +29,93 @@ const AppRouter = () => {
         );
       });
     }
-  }, [cursor.current]);
+  }, []);
 
   return (
-    <Page>
+    <Page className="App">
       <Cursor className="cursor" ref={cursor}>
         <div className="vertical" /> <div className="horizontal" />{" "}
       </Cursor>
-      <Router>
-        <SideNav />
-        <Switch>
-          <Route
-          path={"/about/"}
-          component={About}
-          />
-          <Route path={"/"} component={Home}/>
-        </Switch>
-      </Router>
+      <SideNav />
+      {routes.map(({ path, Component, name }) => {
+        return (
+          <Route key={name} path={path} exact>
+            {({ match }) => {
+              return (
+                <CSSTransition
+                  in={match != null}
+                  timeout={1200}
+                  classNames="page"
+                  unmountOnExit
+                  onEnter={Animation.onEnter}
+                  onExit={Animation.onExit}
+                >
+                  <div className="page">
+                    <Component />
+                  </div>
+                </CSSTransition>
+              );
+            }}
+          </Route>
+        );
+      })}
     </Page>
   );
 };
 
 function Home() {
-  return <h2>Home</h2>;
+  return (
+    <Container>
+      <div className="content">
+        <div className="content--inner">home</div>
+      </div>
+    </Container>
+  );
 }
 
-console.log(Colors, "Colors");
+function Work() {
+  return (
+    <Container>
+      <div className="content">
+        <p className="content--inner">work</p>
+      </div>
+    </Container>
+  );
+}
+
+const Page = styled("div")`
+  min-height: 100vh;
+  position: relative;
+  box-sizing: border-box;
+  background-color: ${Colors.main.Black.default};
+
+  .page-enter {
+    opacity: 0;
+  }
+  .page-enter-active {
+    opacity: 1;
+    transition: opacity 400ms;
+    transition-delay: 600ms;
+  }
+  .page-exit {
+    opacity: 1;
+  }
+  .page-exit-active {
+    opacity: 0;
+    transition: opacity 400ms;
+  }
+`;
+
+const Container = styled("div")`
+  width: 500px;
+  height: 400px;
+  background: white;
+  top: 97px;
+  bottom: 0;
+  right: 220px;
+  position: absolute;
+  transition: all 0.4s cubic-bezier(0.2, 0.6, 0.2, 1);
+`;
 
 const Cursor = styled("div")`
   position:relative;
@@ -77,10 +144,4 @@ const Cursor = styled("div")`
   }
 `;
 
-const Page = styled("div")`
-  min-height: 100vh;
-  position: relative;
-  box-sizing: border-box;
-  background-color: ${Colors.main.Black.default};
-`;
 export default AppRouter;

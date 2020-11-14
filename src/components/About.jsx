@@ -1,23 +1,29 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { Colors, Spacing } from "../rules/index";
+import { Spacing } from "../rules/index";
 
 const About = () => {
   return (
-    <Container>
+    <Container className="view">
       <Wrap>
-        this is where im going wto righte a little about me askljfjasklf;askfa
-        al;sjfjashfkasfnasjkfasm poasjfasf this is where im going wto righte a
-        little about me askljfjasklf;askfa al;sjfjashfkasfnasjkfasm poasjfasf
-        this is where im going wto righte a little about me askljfjasklf;askfa
-        al;sjfjashfkasfnasjkfasm poasjfasf this is where im going wto righte a
-        little about me askljfjasklf;askfa al;sjfjashfkasfnasjkfasm poasjfasf
-        this is where im going wto righte a little about me askljfjasklf;askfa
-        al;sjfjashfkasfnasjkfasm poasjfasf this is where im going wto righte a
-        little about me askljfjasklf;askfa al;sjfjashfkasfnasjkfasm poasjfasf
-        this is where im going wto righte a little about me askljfjasklf;askfa
-        al;sjfjashfkasfnasjkfasm poasjfasf this is where im going wto righte a
-        little about me askljfjasklf;askfa al;sjfjashfkasfnasjkfasm poasjfasf
+        <div className="content">
+          <div className="content--inner">
+            this is where im going wto righte a little about me
+            askljfjasklf;askfa al;sjfjashfkasfnasjkfasm poasjfasf this is where
+            im going wto righte a little about me askljfjasklf;askfa
+            al;sjfjashfkasfnasjkfasm poasjfasf this is where im going wto righte
+            a little about me askljfjasklf;askfa al;sjfjashfkasfnasjkfasm
+            poasjfasf this is where im going wto righte a little about me
+            askljfjasklf;askfa al;sjfjashfkasfnasjkfasm poasjfasf this is where
+            im going wto righte a little about me askljfjasklf;askfa
+            al;sjfjashfkasfnasjkfasm poasjfasf this is where im going wto righte
+            a little about me askljfjasklf;askfa al;sjfjashfkasfnasjkfasm
+            poasjfasf this is where im going wto righte a little about me
+            askljfjasklf;askfa al;sjfjashfkasfnasjkfasm poasjfasf this is where
+            im going wto righte a little about me askljfjasklf;askfa
+            al;sjfjashfkasfnasjkfasm poasjfasf
+          </div>
+        </div>
       </Wrap>
     </Container>
   );

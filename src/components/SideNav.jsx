@@ -3,19 +3,18 @@ import styled from "@emotion/styled";
 import { NavLink } from "react-router-dom";
 
 import { Colors, Spacing } from "../rules/index";
-import cursor from "../public/img/cursor.svg";
 
 const SideNav = () => {
   return (
     <Menu>
-      <Link exact to="/about/">
+      <Link exact to="/" key={"/"}>
+        • Home
+      </Link>
+      <Link exact to="/about" key={"/about"}>
         • About
       </Link>
-      <Link exact to="/sss">
+      <Link exact to="/work" key={"/work"}>
         • Work
-      </Link>
-      <Link exact to="/">
-        • Widgets
       </Link>
     </Menu>
   );
@@ -49,32 +48,6 @@ const Link = styled(NavLink)`
     -webkit-text-fill-color: ${Colors.main.White.default};
     margin-left: 40px;
     transition: all 0.4s cubic-bezier(0.2, 0.6, 0.2, 1);
-  }
-`;
-
-const Cursor = styled("div")`
-  position:relative;
-  width: 75px;
-  height: 75px;
-  border-radius: 50%;
-  border 1px solid ${Colors.main.Red.default};
-
-  .vertical{
-    border-left: 1px solid ${Colors.main.Red.default};
-    height: 35px;
-    position: absolute;
-    left: 50%;
-    top: 20px;
-}
-  }
-
-  .horizontal{
-    border-bottom: 1px solid ${Colors.main.Red.default};
-    width: 35px;
-    position: absolute;
-    bottom: 50%;
-    top: 18px;
-    left: 21px;
   }
 `;
 
